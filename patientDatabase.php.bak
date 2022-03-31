@@ -4,25 +4,8 @@
 <title>Vaccine Database</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+<link rel="stylesheet" type="text/css" href="styleSheet.css">
 
-body {
-  font-family: Arial;
-  margin: 0;
-}
-
-
-.header {
-  padding: 30px;
-  text-align: center;
-  background: #281959;
-  color: white;
-  font-size: 30px;
-}
-
-
-.content {padding:20px;}
-</style>
 </head>
 <body>
 
@@ -31,111 +14,22 @@ body {
 		<img src="https://www.gusd.net//cms/lib/CA01000648/Centricity/Domain/55/Vaccine.png" alt="alternatetext" width="158" height="133" style=float:left>
 	</a>
 	<h1>Welcome to the COVID-19 Vaccine Database</h1>
-	<a href="http://localhost/InputOHIP.html" class="signin-link" style=float:right>Sign In</a>
+</div>
+
+<div class="topnav">
+  <a href="covid_db.php">Home</a>
+  <a href="InputOHIP.html">Check Vaccination Status</a>
+  <a class="active" href="patientDatabase.php">Patient Database</a>
+  <a href="#about">Worker Database</a>
+  <a href="#about">Site Information</a>
 </div>
 
 <div class="content">
 
+
 <?php
 include 'connectdb.php';
-
-$siteName = $_POST['which_site'];
-echo $siteName;
-$OHIP = $_POST['OHIPnum'];
-echo "   ".$OHIP;
-$lotNum = $_POST['VaccineLot'];
-echo "   ".$lotNum;
-
-$data = [
-    'OHIPnumber' => $OHIP,
-    'VaccineLotNum' => $lotNum,
-];
-
-
-
-//MySQL connection details.
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$database = 'coviddb';
-
-//Custom PDO options.
-$options = array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_EMULATE_PREPARES => false
-);
-
-//Connect to MySQL and instantiate our PDO object.
-$pdo = new PDO("mysql:host=$host;dbname=$database", $user, $pass, $options);
-
-$query='SELECT * FROM vaccinelot v WHERE v.lotNumber ="' . $lotNum . '"';
-
-
-$result=$connection->query($query);
-
-
-if($result->rowCount() == 0)
-{
-	//Create our INSERT SQL query.
-	$sql = "INSERT INTO `vaccinelot`(`LotNumber`, `DateProduced`, `ExpiryDate`, `Producer`, `ShippedTo`) VALUES (:LotNumber, null, null, null, :ShippedTo)";
-
-	//Prepare our statement.
-	$statement = $pdo->prepare($sql);
-
-
-	//Bind our values to our parameters (we called them :make and :model).
-	$statement->bindValue(':LotNumber', $lotNum);
-	$statement->bindValue(':ShippedTo', $siteName);
-
-
-	//Execute the statement and insert our values.
-	$inserted = $statement->execute();
-
-
-	//Because PDOStatement::execute returns a TRUE or FALSE value,
-	//we can easily check to see if our insert was successful.
-	if($inserted){
-		echo 'Row inserted!<br>';
-	}
-}
-
-
-
-//Create our INSERT SQL query.
-$sql = "INSERT INTO `patient`(`OHIPnumber`, `PatientName`, `Birthday`, `TimeReceived`, `DosesReceived`, `VaccineLotNum`) 
-VALUES (:OHIPnumber, null, null, null, 1,:VaccineLotNum)";
-
-//Prepare our statement.
-$statement = $pdo->prepare($sql);
-
-
-//Bind our values to our parameters (we called them :make and :model).
-$statement->bindValue(':OHIPnumber', $OHIP);
-$statement->bindValue(':VaccineLotNum', $lotNum);
-
-
-//Execute the statement and insert our values.
-$inserted = $statement->execute();
-
-
-//Because PDOStatement::execute returns a TRUE or FALSE value,
-//we can easily check to see if our insert was successful.
-if($inserted){
-    echo 'Row inserted!<br>';
-}
-
-?>
-<h1>Updating your vaccine record:</h1>
-<?php	
-	$query='SELECT * FROM patient p WHERE p.OHIPnumber ="' . $OHIP . '"';
-	$result=$connection->query($query);
-	
-	while ($row = $result->fetch()) {
-		$doses=$row["DosesReceived"];
-		$lotNum = $row["VaccineLotNum"];
-	}
-	
-	echo 'According to our records, you have received '.$doses.' dose(s) which came from vaccine lot number: '.$lotNum;
+	include 'getPatientInfo.php';
 ?>
 
 </div>

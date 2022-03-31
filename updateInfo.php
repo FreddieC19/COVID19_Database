@@ -35,23 +35,25 @@ th {
 	<a href="http://localhost/InputOHIP.html" class="signin-link" style=float:right>Sign In</a>
 </div>
 
+<div class="topnav">
+  <a href="covid_db.php">Home</a>
+  <a class="active" href="InputOHIP.html">Check Vaccination Status</a>
+  <a href="patientDatabase.php">Patient Database</a>
+  <a href="#about">Worker Database</a>
+  <a href="#about">Site Information</a>
+</div>
+
 <div class="content">
 
 <?php
 include 'connectdb.php';
 
 $siteName = $_POST['which_site'];
-//echo $siteName;
 $OHIP = $_POST['OHIPnum'];
-//echo "   ".$OHIP;
 $lotNum = $_POST['VaccineLot'];
-//echo "   ".$lotNum;
-
-$data = [
-    'OHIPnumber' => $OHIP,
-    'VaccineLotNum' => $lotNum,
-];
-
+$name = $_POST['name'];
+$bday = $_POST['bday'];
+$doseTime = $_POST['doseTime'];
 
 
 //MySQL connection details.
@@ -104,7 +106,7 @@ if($result->rowCount() == 0)
 
 //Create our INSERT SQL query.
 $sql = "INSERT INTO `patient`(`OHIPnumber`, `PatientName`, `Birthday`, `TimeReceived`, `DosesReceived`, `VaccineLotNum`) 
-VALUES (:OHIPnumber, null, null, null, 1,:VaccineLotNum)";
+VALUES (:OHIPnumber, :PatientName, :Birthday, :TimeReceived, 1,:VaccineLotNum)";
 
 //Prepare our statement.
 $statement = $pdo->prepare($sql);
@@ -113,6 +115,9 @@ $statement = $pdo->prepare($sql);
 //Bind our values to our parameters (we called them :make and :model).
 $statement->bindValue(':OHIPnumber', $OHIP);
 $statement->bindValue(':VaccineLotNum', $lotNum);
+$statement->bindValue(':PatientName', $name);
+$statement->bindValue(':Birthday', $bday);
+$statement->bindValue(':TimeReceived', $doseTime);
 
 
 //Execute the statement and insert our values.

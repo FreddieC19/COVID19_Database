@@ -19,7 +19,7 @@
 <div class="topnav">
   <a class="active" href="covid_db.php">Home</a>
   <a href="InputOHIP.html">Check Vaccination Status</a>
-  <a href="#notyet">Patient Database</a>
+  <a href="patientDatabase.php">Patient Database</a>
   <a href="#about">Worker Database</a>
   <a href="#about">Site Information</a>
 </div>

@@ -17,8 +17,8 @@
 
 <div class="topnav">
   <a href="covid_db.php">Home</a>
-  <a href="InputOHIP.html">Check Vaccination Status</a>
-  <a href="#notyet">Patient Database</a>
+  <a class="active" href="InputOHIP.html">Check Vaccination Status</a>
+  <a href="patientDatabase.php">Patient Database</a>
   <a href="#about">Worker Database</a>
   <a href="#about">Site Information</a>
 </div>
@@ -48,6 +48,15 @@
 
 		<br><label for="VaccineLot">Please enter the vaccine lot number you received:</label><br>
 		<input type="text" id="VaccineLot" name="VaccineLot"><br>
+		
+		<br><label for="name">Please enter your FULL name (First name and Last name):</label><br>
+		<input type="text" id="name" name="name"><br>
+		
+		<label for="bday">Please select your date of birth:</label><br>
+		<input type="date" id="bday" name="bday"><br>
+		
+		<label for="doseTime">Please enter the date and time the vaccine was received:</label><br>
+		<input type="datetime-local" id="doseTime" name="doseTime"><br>
 
 		<br><input type="submit" value="Submit">
 	</form>

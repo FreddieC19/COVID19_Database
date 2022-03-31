@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="styleSheet.css">
+
 </head>
 <body>
 
@@ -17,19 +18,20 @@
 
 <div class="topnav">
   <a href="covid_db.php">Home</a>
-  <a class="active" href="InputOHIP.html">Check Vaccination Status</a>
-  <a href="#notyet">Patient Database</a>
+  <a href="InputOHIP.html">Check Vaccination Status</a>
+  <a class="active" href="patientDatabase.php">Patient Database</a>
   <a href="#about">Worker Database</a>
   <a href="#about">Site Information</a>
 </div>
 
 <div class="content">
- <h1>Please input your OHIP number below and hit enter</h1>
 
-<form action="checkOHIP.php" method = "post">
-  OHIP Number: <input type="text" name="OHIPnumber">
-  <input type="submit" value="Submit"><br>
-</form>
+
+<?php
+	include 'connectdb.php';
+	include 'getPatientInfo.php';
+?>
+
 </div>
 
 </body>
