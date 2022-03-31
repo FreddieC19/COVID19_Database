@@ -10,14 +10,14 @@
 <body>
 
 <div class="header">
-	<a href="http://localhost/covid_db.php">
+	<a href="http://localhost/covid.php">
 		<img src="Logo.png" alt="alternatetext" width="171" height="135" style=float:left>
 	</a>
 	<h1>COVID-19 Vaccine Database</h1>
 </div>
 
 <div class="topnav">
-  <a class="active" href="covid_db.php">Home</a>
+  <a class="active" href="covid.php">Home</a>
   <a href="InputOHIP.html">Check Vaccination Status</a>
   <a href="patientDatabase.php">Patient Database</a>
   <a href="workerDatabase.php">Worker Database</a>
