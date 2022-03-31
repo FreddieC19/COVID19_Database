@@ -21,7 +21,7 @@
   <a href="InputOHIP.html">Check Vaccination Status</a>
   <a href="patientDatabase.php">Patient Database</a>
   <a href="#about">Worker Database</a>
-  <a href="#about">Site Information</a>
+  <a href="siteInfo.php">Site Information</a>
 </div>
 
 <div class="content">

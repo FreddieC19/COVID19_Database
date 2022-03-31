@@ -1,0 +1,9 @@
+<?php
+	$result = $connection->query("select * from vaccinelot v");
+	echo "<ol>";
+	while ($row = $result->fetch()) {
+		echo "<li>";
+		echo $row["ShippedTo"]."</li>";
+	}
+	echo "</ol>";
+?>

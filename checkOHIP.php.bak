@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,9 +38,9 @@ th {
 <div class="topnav">
   <a href="covid_db.php">Home</a>
   <a class = "active" href="InputOHIP.html">Check Vaccination Status</a>
-  <a href="#notyet">Patient Database</a>
+  <a href="patientDatabase.php">Patient Database</a>
   <a href="#about">Worker Database</a>
-  <a href="#about">Site Information</a>
+  <a href="siteInfo.php">Site Information</a>
 </div>
 
 <div class="content">
@@ -60,14 +59,7 @@ th {
 
 	if($result->rowCount() > 0)
 	{
-		$query2 = 'SELECT * FROM patient p JOIN vaccinelot v ON p.VaccineLotNum = v.LotNumber WHERE p.OHIPnumber = "' . $OHIPnum . '"';
-		$result = $connection->query($query2);
-		while ($row = $result->fetch()) {
-			$doses=$row["DosesReceived"];
-			$lotnum = $row["VaccineLotNum"];
-			$site = $row["ShippedTo"];
-			$name = $row["PatientName"];
-		}
+		header("Location: showPatient.php?OHIPnum=".$OHIPnum);
 	}
 	else
 	{
@@ -75,35 +67,6 @@ th {
 	}
 	echo "</ol>";
 ?>
-
-<h1>Welcome back, <?php echo $name?></h1>
-
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0lax{text-align:left;vertical-align:top}
-</style>
-<table class="tg">
-<thead>
-  <tr>
-	<th class="tg-0lax">OHIP Number</th>
-    <th class="tg-0lax">Number of Doses</th>
-    <th class="tg-0lax">Site Received</th>
-    <th class="tg-0lax">Vaccine Lot Number</th>
-  </tr>
-</thead>
-<tbody>
-  <tr>
-	<td class="tg-0lax"><?php echo $OHIPnum?></td>
-	<td class="tg-0lax"><?php echo $doses?></td>
-    <td class="tg-0lax"><?php echo $site?></td>
-    <td class="tg-0lax"><?php echo $lotnum?></td>
-  </tr>
-</tbody>
-</table>
 
 </div>
 

@@ -1,9 +1,11 @@
 <?php
-$result = $connection->query("select * from patient");
-echo "<ol>";
+$result = $connection->query("SELECT * FROM patient p JOIN vaccinelot v ON v.LotNumber = p.VaccineLotNum");
+echo "<ul>";
 while ($row = $result->fetch()) {
 	echo "<li>";
-	echo $row["OHIPnumber"]." - ".$row["PatientName"]."</li>";
+	$name = $row["PatientName"];
+	$ohip = $row["OHIPnumber"];
+	echo "<a href='showPatient.php?OHIPnum=<?php echo $ohip->OHIPnum; ?>'><?php echo $name?></a>"."</li>";
 }
-echo "</ol>";
+echo "</ul>";
 ?>

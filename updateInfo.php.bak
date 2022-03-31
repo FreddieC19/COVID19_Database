@@ -32,7 +32,6 @@ th {
 		<img src="https://www.gusd.net//cms/lib/CA01000648/Centricity/Domain/55/Vaccine.png" alt="alternatetext" width="158" height="133" style=float:left>
 	</a>
 	<h1>Welcome to the COVID-19 Vaccine Database</h1>
-	<a href="http://localhost/InputOHIP.html" class="signin-link" style=float:right>Sign In</a>
 </div>
 
 <div class="topnav">
@@ -40,7 +39,7 @@ th {
   <a class="active" href="InputOHIP.html">Check Vaccination Status</a>
   <a href="patientDatabase.php">Patient Database</a>
   <a href="#about">Worker Database</a>
-  <a href="#about">Site Information</a>
+  <a href="siteInfo.php">Site Information</a>
 </div>
 
 <div class="content">
@@ -71,16 +70,15 @@ $options = array(
 //Connect to MySQL and instantiate our PDO object.
 $pdo = new PDO("mysql:host=$host;dbname=$database", $user, $pass, $options);
 
+
 $query='SELECT * FROM vaccinelot v WHERE v.lotNumber ="' . $lotNum . '"';
 
-
 $result=$connection->query($query);
-
 
 if($result->rowCount() == 0)
 {
 	//Create our INSERT SQL query.
-	$sql = "INSERT INTO `vaccinelot`(`LotNumber`, `DateProduced`, `ExpiryDate`, `Producer`, `ShippedTo`) VALUES (:LotNumber, null, null, null, :ShippedTo)";
+	$sql = "INSERT INTO `vaccinelot`(`LotNumber`, `DateProduced`, `ExpiryDate`, `Producer`, `ShippedTo`, `NumDoses`) VALUES (:LotNumber, null, null, null, :ShippedTo, null)";
 
 	//Prepare our statement.
 	$statement = $pdo->prepare($sql);
@@ -106,7 +104,7 @@ if($result->rowCount() == 0)
 
 //Create our INSERT SQL query.
 $sql = "INSERT INTO `patient`(`OHIPnumber`, `PatientName`, `Birthday`, `TimeReceived`, `DosesReceived`, `VaccineLotNum`) 
-VALUES (:OHIPnumber, :PatientName, :Birthday, null, 1,:VaccineLotNum)";
+VALUES (:OHIPnumber, :PatientName, :Birthday, :TimeReceived, 1,:VaccineLotNum)";
 
 //Prepare our statement.
 $statement = $pdo->prepare($sql);
@@ -117,6 +115,7 @@ $statement->bindValue(':OHIPnumber', $OHIP);
 $statement->bindValue(':VaccineLotNum', $lotNum);
 $statement->bindValue(':PatientName', $name);
 $statement->bindValue(':Birthday', $bday);
+$statement->bindValue(':TimeReceived', $doseTime);
 
 
 //Execute the statement and insert our values.
@@ -137,14 +136,7 @@ if($inserted){
 	
 	if($result->rowCount() > 0)
 	{
-		$query2 = 'SELECT * FROM patient p JOIN vaccinelot v ON p.VaccineLotNum = v.LotNumber WHERE p.OHIPnumber = "' . $OHIP . '"';
-		$result = $connection->query($query2);
-		while ($row = $result->fetch()) {
-			$doses=$row["DosesReceived"];
-			$lotnum = $row["VaccineLotNum"];
-			$site = $row["ShippedTo"];
-			$name = $row["PatientName"];
-		}
+		header("Location: showPatient.php?OHIPnum=".$OHIP);
 	}
 	
 ?>

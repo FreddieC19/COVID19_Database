@@ -52,10 +52,10 @@
 		<br><label for="name">Please enter your FULL name (First name and Last name):</label><br>
 		<input type="text" id="name" name="name"><br>
 		
-		<label for="bday">Please select your date of birth:</label><br>
+		<br><label for="bday">Please select your date of birth:</label><br>
 		<input type="date" id="bday" name="bday"><br>
 		
-		<label for="doseTime">Please enter the date and time the vaccine was received:</label><br>
+		<br><label for="doseTime">Please enter the date and time the vaccine was received:</label><br>
 		<input type="datetime-local" id="doseTime" name="doseTime"><br>
 
 		<br><input type="submit" value="Submit">

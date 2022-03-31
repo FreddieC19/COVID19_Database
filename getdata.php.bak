@@ -1,5 +1,5 @@
 <?php
-$result = $connection->query("select * from healthcareworker h WHERE (h.WorkerID > 40000000 AND h.WorkerID < 50000000)");
+$result = $connection->query("select * from healthcareworker");
 echo "<ol>";
 while ($row = $result->fetch()) {
 	echo "<li>";
