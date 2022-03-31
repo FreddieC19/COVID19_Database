@@ -1,0 +1,9 @@
+<?php
+$result = $connection->query("'SELECT * FROM patient p WHERE p.OHIPnumber = "' . $OHIPnum . '"'");
+echo "<ol>";
+while ($row = $result->fetch()) {
+	echo "<li>";
+	echo $row["Name"]." - ".$row["WorkerID"]."</li>";
+}
+echo "</ol>";
+?>
