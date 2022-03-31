@@ -32,14 +32,14 @@ th {
 	<a href="http://localhost/covid_db.php">
 		<img src="https://www.gusd.net//cms/lib/CA01000648/Centricity/Domain/55/Vaccine.png" alt="alternatetext" width="158" height="133" style=float:left>
 	</a>
-	<h1>Welcome to the COVID-19 Vaccine Database</h1>
+	<h1>COVID-19 Vaccine Database</h1>
 </div>
 
 <div class="topnav">
   <a href="covid_db.php">Home</a>
   <a href="InputOHIP.html">Check Vaccination Status</a>
   <a class = "active" href="patientDatabase.php">Patient Database</a>
-  <a href="#about">Worker Database</a>
+  <a href="workerDatabase.php">Worker Database</a>
   <a href="siteInfo.php">Site Information</a>
 </div>
 
@@ -52,7 +52,6 @@ th {
 	
 	$query='SELECT * FROM patient p WHERE p.OHIPnumber ="' . $OHIPnum . '"';
 	$result=$connection->query($query);
-	
 	
 	if($result->rowCount() > 0)
 	{

@@ -10,16 +10,16 @@
 
 <div class="header">
 	<a href="http://localhost/covid_db.php">
-		<img src="https://www.gusd.net//cms/lib/CA01000648/Centricity/Domain/55/Vaccine.png" alt="alternatetext" width="158" height="133" style=float:left>
+		<img src="Logo.png" alt="alternatetext" width="171" height="135" style=float:left>
 	</a>
-	<h1>Welcome to the COVID-19 Vaccine Database</h1>
+	<h1>COVID-19 Vaccine Database</h1>
 </div>
 
 <div class="topnav">
   <a href="covid_db.php">Home</a>
   <a class="active" href="InputOHIP.html">Check Vaccination Status</a>
   <a href="patientDatabase.php">Patient Database</a>
-  <a href="#about">Worker Database</a>
+  <a href="workerDatabase.php">Worker Database</a>
   <a href="siteInfo.php">Site Information</a>
 </div>
 

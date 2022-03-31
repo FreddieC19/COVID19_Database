@@ -11,6 +11,7 @@
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
+  width: 23.35%;
 }
 
 .tab button {
@@ -37,6 +38,7 @@
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+  width: 22.20%;
 }
 </style>
 </head>
@@ -46,14 +48,14 @@
 	<a href="http://localhost/covid_db.php">
 		<img src="https://www.gusd.net//cms/lib/CA01000648/Centricity/Domain/55/Vaccine.png" alt="alternatetext" width="158" height="133" style=float:left>
 	</a>
-	<h1>Welcome to the COVID-19 Vaccine Database</h1>
+	<h1>COVID-19 Vaccine Database</h1>
 </div>
 
 <div class="topnav">
   <a href="covid_db.php">Home</a>
   <a href="InputOHIP.html">Check Vaccination Status</a>
   <a href="patientDatabase.php">Patient Database</a>
-  <a href="#about">Worker Database</a>
+  <a href="workerDatabase.php">Worker Database</a>
   <a class="active" href="siteInfo.php">Site Information</a>
 </div>
 
@@ -89,7 +91,7 @@
 			echo "<ul>";
 			while ($row = $result->fetch()) {
 				echo "<li>";
-				echo $row["ShippedTo"]."</li>";
+				echo $row["ShippedTo"]." - ".$row["NumDoses"]." doses are available at this site"."</li>";
 			}
 			echo "</ul>";
 		?>
@@ -102,7 +104,7 @@
 			echo "<ul>";
 			while ($row = $result->fetch()) {
 				echo "<li>";
-				echo $row["ShippedTo"]."</li>";
+				echo $row["ShippedTo"]." - ".$row["NumDoses"]." doses are available at this site"."</li>";
 			}
 			echo "</ul>";
 		?>
@@ -115,7 +117,7 @@
 			echo "<ul>";
 			while ($row = $result->fetch()) {
 				echo "<li>";
-				echo $row["ShippedTo"]."</li>";
+				echo $row["ShippedTo"]." - ".$row["NumDoses"]." doses are available at this site"."</li>";
 			}
 			echo "</ul>";
 		?>
