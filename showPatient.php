@@ -62,6 +62,8 @@ th {
 			$lotnum = $row["VaccineLotNum"];
 			$site = $row["ShippedTo"];
 			$name = $row["PatientName"];
+			$time = $row["TimeReceived"];
+			$brand = $row["Producer"];
 		}
 	}
 	
@@ -84,6 +86,8 @@ th {
     <th class="tg-0lax">Number of Doses</th>
     <th class="tg-0lax">Site Received</th>
     <th class="tg-0lax">Vaccine Lot Number</th>
+	<th class="tg-0lax">Date Received</th>
+	<th class="tg-0lax">Vaccine Producer</th>
   </tr>
 </thead>
 <tbody>
@@ -92,6 +96,8 @@ th {
 	<td class="tg-0lax"><?php echo $doses?></td>
     <td class="tg-0lax"><?php echo $site?></td>
     <td class="tg-0lax"><?php echo $lotnum?></td>
+	<td class="tg-0lax"><?php echo $time?></td>
+	<td class="tg-0lax"><?php echo $brand?></td>
   </tr>
 </tbody>
 </table>

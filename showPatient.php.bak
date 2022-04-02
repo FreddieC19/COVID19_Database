@@ -36,7 +36,7 @@ th {
 </div>
 
 <div class="topnav">
-  <a href="covid_db.php">Home</a>
+  <a href="covid.php">Home</a>
   <a href="InputOHIP.html">Check Vaccination Status</a>
   <a class = "active" href="patientDatabase.php">Patient Database</a>
   <a href="workerDatabase.php">Worker Database</a>
@@ -62,6 +62,8 @@ th {
 			$lotnum = $row["VaccineLotNum"];
 			$site = $row["ShippedTo"];
 			$name = $row["PatientName"];
+			$time = $row["TimeReceived"];
+			$brand = $row["Producer"];
 		}
 	}
 	
@@ -84,6 +86,8 @@ th {
     <th class="tg-0lax">Number of Doses</th>
     <th class="tg-0lax">Site Received</th>
     <th class="tg-0lax">Vaccine Lot Number</th>
+	<th class="tg-0lax">Date Received</th>
+	<th class="tg-0lax">Vaccine Producer</th>
   </tr>
 </thead>
 <tbody>
@@ -92,6 +96,7 @@ th {
 	<td class="tg-0lax"><?php echo $doses?></td>
     <td class="tg-0lax"><?php echo $site?></td>
     <td class="tg-0lax"><?php echo $lotnum?></td>
+	<td class="tg-0lax"><?php echo $time?></td>
   </tr>
 </tbody>
 </table>
